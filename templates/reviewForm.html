@@ -1,0 +1,148 @@
+{% include 'base.html' %} {% block body %}
+<div class="container">
+  <section class="">
+    <h1 id="title" class="text-center" style="">Review</h1>
+    <p
+      id="description"
+      class="description text-center"
+      style="color: rgba(9, 10, 73, 0.9)"
+    >
+      Review our Services! It would be awesome if you could send us feedback
+      about our services, in other to improve and ensure maximum satisfaction to
+      our lovely customers like you
+    </p>
+  </section>
+  <form
+    action="/reviewForm/"
+    method="POST"
+    style="color: rgba(16, 16, 71, 0.9)"
+  >
+    {% csrf_token %}
+    <div class="form-group">
+      <label id="name-label" for="lecturerName">Name:</label>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        id="name"
+        placeholder="Your Name"
+        required
+      />
+    </div>
+
+    <br />
+
+    <div class="form-group">
+      <label id="name-label" for="lecturerCourse">Email:</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        id="email"
+        placeholder="Your Email"
+        required
+      />
+    </div>
+    <br />
+
+    <div class="form-group">
+      <label id="courseCode-label" for="courseCode"> Job_title:</label>
+      <select
+        type="text"
+        name="job_title"
+        class="form-control"
+        id="job_title"
+        placeholder="your job title"
+        required
+      >
+        <option disabled selected value>Job Title</option>
+        <option value="Ceo & Founder">Ceo & Founder</option>
+        <option value="Business-Owner">Business-Owner</option>
+        <option value="Designer">Designer</option>
+        <option value="Student">Student</option>
+        <option value="Freelancer">Freelancer</option>
+        <option value="Enterpreneur">Enterpreneur</option>
+        <option value="Store-Owner">Store-Owner</option>
+        <option value="worker">Worker</option>
+        <option value="others">others</option>
+      </select>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+      <label id="communicationSkills-label" for="communicationSkills"
+        >Rate Us:</label
+      >
+      <select
+        type="number"
+        class="form-control"
+        name="rating"
+        id="rating"
+        placeholder="Rate Us"
+        required
+      >
+        <option disabled selected value>Rate Us</option>
+        <option value="1">1 star</option>
+        <option value="2">2 stars</option>
+        <option value="3">3 stars</option>
+        <option value="4">4 stars</option>
+        <option value="5">5 stars</option>
+      </select>
+    </div>
+
+    <br />
+
+    <div class="form-group">
+      <label id="name-label" for="listeningSkills">Message :</label>
+      <textarea
+        class="form-control"
+        name="message"
+        rows="7"
+        id="message"
+        placeholder="Message"
+        required
+      ></textarea>
+    </div>
+    {% comment %} <br />
+    <div class="form-group">
+      <label id="name-label" for="userReview">Feedback Comment:</label>
+      <textarea
+        type="text"
+        rows="4"
+        name="userReview"
+        class="form-control"
+        required
+      >
+Enter text here...</textarea
+      >
+    </div>
+    {% endcomment %}
+    <br />
+
+    <div class="form-group">
+      <br />
+      <div class="submit-button text-center">
+        <button
+          type="submit"
+          id="submit"
+          class=""
+          style="
+            border: none;
+            text-align: center;
+            padding: 8px;
+            color: white;
+            background-color: #1acc8d;
+            border-radius: 0.6em;
+          "
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}
+<br />
+
+{% include 'footer.html' %}

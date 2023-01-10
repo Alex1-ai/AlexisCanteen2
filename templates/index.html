@@ -1,0 +1,463 @@
+{% load static %}
+{% include 'base.html' %}
+<!-- End Header -->
+  <!-- End Header -->
+
+
+
+  {% block body %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+    <div class="container position-relative">
+      <div class="row gy-5" data-aos="fade-in">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+          {% comment %} <h2>Welcome to <span>Online Canteen</span></h2> {% endcomment %}
+          <h2>{{context.homeWords.title}}</h2>
+          {% comment %} <p>Start Ordering your Food package, Suya, Pork and Yam from the comfort of your home, office, hostel etc.</p> {% endcomment %}
+          <p>{{context.homeWords.subtitle}}</p>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+            <a href="#services" class="btn-get-started">Get Started</a>
+            <a href="#" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2">
+          <img src="{% static 'assets/img/shopping.jpg' %}" class="img-fluid rounded-5" alt="" data-aos="zoom-out" data-aos-delay="100">
+        </div>
+      </div>
+    </div>
+
+    <div class="icon-boxes position-relative">
+      <div class="container position-relative">
+        <div class="row gy-4 mt-5">
+
+          {% for feature in context.features %}
+
+          <div class="col-xl-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon-box">
+              <div class="icon"><i class="{{feature.featureIcon}}"></i></div>
+              <h4 class="title"><a href="#services" class="stretched-link">{{feature.featureName}}</a></h4>
+            </div>
+          </div>
+          <!--End Icon Box -->
+          {% endfor %}
+
+          
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </section>
+  <!-- End Hero Section -->
+
+  <main id="main">
+        <!-- ======= Recent Blog Posts Section ======= -->
+        <section id="services" class="recent-posts sections-bg">
+          <div class="container" data-aos="fade-up">
+    
+            <div class="section-header">
+              <h2> Our Services </h2>
+              {% if context.services %}
+              <p>Our passion is your happiness. We provide Maximum delivery services to our valued customers</p>
+              {% else %}
+              <p>Empty shops. Services at this location have not been registered with us!</p>
+              {% endif %}
+            </div>
+    
+            <div class="row gy-4">
+              {% if context.services %}
+                    {% for service in context.services %}
+
+                    {% if service.is_active %}
+                        <div class="col-xl-4 col-md-6">
+                          <article>
+              
+                            <div class="post-img">
+                              {% comment %} <img src="{% static 'assets/img/blog/blog-1.jpg' %}" alt="" class="img-fluid"> {% endcomment %}
+                              <img src="{{service.service_image.url}}" alt="" class="img-fluid">
+                            </div>
+              
+                            <p class="post-category">{{service.title}}</p>
+              
+                            <h2 class="title">
+                              <a href="{{service.get_url}}">{{service.serviceName}}</a>
+                            </h2>
+                            <div class = "btn btn-success">
+                              <a href="{{service.get_url}}" class="text-white">Start Order</a>
+
+                            </div>
+              
+                            <div class="d-flex align-items-center">
+                              {% comment %} <img src="{% static 'assets/img/blog/blog-author.jpg' %}" alt="" class="img-fluid post-author-img flex-shrink-0"> {% endcomment %}
+                              <div class="post-meta">
+                                {% comment %} <p class="post-author">Maria Doe</p>
+                                <p class="post-date">
+                                  <time datetime="2022-01-01">Jan 1, 2022</time>
+                                
+                                </p>  {% endcomment %}
+                                {% comment %} <div class = "btn btn-success">
+                                  <a href="#" class="text-white">Get Started</a>
+
+                                </div> {% endcomment %}
+
+                                
+                              </div> 
+                            </div>
+              
+                          </article>
+                        </div><!-- End post list item -->
+                    {%endif%}
+                    {% endfor %}
+
+              {% else %}
+              <div class="col-lg-12 order-1 order-lg-2">
+                <img src="{% static 'assets/img/empty_cart.png' %}" class="img-fluid rounded-5" alt="" data-aos="zoom-out" data-aos-delay="100">
+                </div>
+          
+
+              {% endif %}
+          
+            </div><!-- End recent posts list -->
+    
+          </div>
+        </section><!-- End Recent Blog Posts Section -->
+
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients">
+      <div class="container" data-aos="zoom-out">
+
+        <div class="clients-slider swiper">
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-1.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-2.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-3.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-4.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-5.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-6.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-7.png' %}" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="{% static 'assets/img/clients/client-8.png' %}" class="img-fluid" alt=""></div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= Stats Counter Section ======= -->
+    <section id="stats-counter" class="stats-counter">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4 align-items-center">
+
+          <div class="col-lg-6">
+            <img src="{% static 'assets/img/stats-img.svg'%}" alt="" class="img-fluid">
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Happy Clients</strong> We are always availabe and ready to render our services  </p>
+            </div><!-- End Stats Item -->
+
+            <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Projects</strong> We make sure we deliver our projects as accurate and eficcient as possible</p>
+            </div><!-- End Stats Item -->
+
+            <div class="stats-item d-flex align-items-center">
+              <span data-purecounter-start="0" data-purecounter-end="453" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>Hours Of Support</strong> Always Available to Render Services</p>
+            </div><!-- End Stats Item -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Stats Counter Section -->
+
+    <!-- ======= Call To Action Section ======= -->
+    <section id="call-to-action" class="call-to-action">
+      <div class="container text-center" data-aos="zoom-out">
+        {% comment %} <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox play-btn"></a> {% endcomment %}
+        <a href="#services" class="glightbox play-btn"></a>
+        <h3>Call To Action</h3>
+        <p>Why waste time and gas driving to the store when you can order everything you need from the comfort of your own home. With our fast and reliable delivery service, you'll never have to worry about running out of your essentials.</p>
+        <a class="cta-btn" href="#services">Call To Action</a>
+      </div>
+    </section><!-- End Call To Action Section -->
+
+
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Testimonials</h2>
+          <p>These are various testimonies coming from our cherished customers. You can also leave us a review.
+             <br><a href="{% url 'reviewForm' %}">Click here <i class="bi-arrow-right-circle-fill" style ="font-size:20px;"></i></a></p>
+        </div>
+
+        <div class="slides-3 swiper" data-aos="fade-up" data-aos-delay="100">
+          <div class="swiper-wrapper">
+
+            {% for testimony in context.testimonies %}
+            {% if testimony.is_accepted %}
+                <div class="swiper-slide">
+                  <div class="testimonial-wrap">
+                    <div class="testimonial-item">
+                      <div class="d-flex align-items-center">
+                        {% comment %} <img src="{% static 'assets/img/testimonials/testimonials-1.jpg' %}" class="testimonial-img flex-shrink-0" alt=""> {% endcomment %}
+                        <div>
+                          <h3>{{ testimony.name }}</h3>
+                          <h4>{{testimony.job_title}}</h4>
+                          
+                          <div class="stars">
+                            {% if testimony.rating == 5 %}
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            {% elif testimony.rating == 4 %}
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+                            {% elif testimony.rating == 3 %}
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+                            {% elif testimony.rating == 2 %}
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+                            {% elif testimony.rating == 1 %}
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+                            {% else %}
+                            <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+                            {% endif %}
+                            {% comment %} <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i> {% endcomment %}
+                          </div>
+                        </div>
+                      </div>
+                      <p>
+                        <i class="bi bi-quote quote-icon-left"></i>
+                      {{testimony.customer_review}}
+                        <i class="bi bi-quote quote-icon-right"></i>
+                      </p>
+                    </div>
+                  </div>
+                </div><!-- End testimonial item -->
+            {% endif %}
+            {% endfor %} 
+{% comment %} 
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <div class="d-flex align-items-center">
+                    <img src="{% static 'assets/img/testimonials/testimonials-2.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
+                    <div>
+                      <h3>Sara Wilsson</h3>
+                      <h4>Designer</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <div class="d-flex align-items-center">
+                    <img src="{% static 'assets/img/testimonials/testimonials-3.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
+                    <div>
+                      <h3>Jena Karlis</h3>
+                      <h4>Store Owner</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <div class="d-flex align-items-center">
+                    <img src="{% static 'assets/img/testimonials/testimonials-4.jpg" class="testimonial-img flex-shrink-0' %}" alt="">
+                    <div>
+                      <h3>Matt Brandon</h3>
+                      <h4>Freelancer</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore.
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-wrap">
+                <div class="testimonial-item">
+                  <div class="d-flex align-items-center">
+                    <img src="{% static 'assets/img/testimonials/testimonials-5.jpg' %}" class="testimonial-img flex-shrink-0" alt="">
+                    <div>
+                      <h3>John Larson</h3>
+                      <h4>Entrepreneur</h4>
+                      <div class="stars">
+                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <p>
+                    <i class="bi bi-quote quote-icon-left"></i>
+                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore.
+                    <i class="bi bi-quote quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+            </div><!-- End testimonial item -->  {% endcomment %}
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+
+
+
+
+
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4">
+            <div class="content px-xl-5">
+              <h3>Frequently Asked <strong>Questions</strong></h3>
+              <p>
+                This is a list of questions and answers that aims to provide quick and easy information to visitors. It is a useful tool for helping users find answers to common questions and can improve the user experience by reducing the need for them to contact customer support or search elsewhere for information
+              </p>
+            </div>
+          </div>
+          {% comment %} {% for num in context.nums  %}
+          <p>{{num}}<p>
+
+       {% endfor %} {% endcomment %}
+          <div class="col-lg-8">
+           
+
+
+            <div class="accordion accordion-flush" id="faqlist" data-aos="fade-up" data-aos-delay="100">
+           
+             {% for faq in context.faqs %}
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-{{faq.number}}">
+                    <span class="num">{{faq.number}}.</span>
+                    {{faq.question}}  
+                   
+                  </button>
+                </h3>
+                <div id="faq-content-{{faq.number}}" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    {{faq.answer}}
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+              {% endfor%}
+             
+              {% comment %} <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
+                    <span class="num">2.</span>
+                    Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?
+                  </button>
+                </h3>
+                <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                  </div>
+                </div>
+              </div><!-- # Faq item--> {% endcomment %}
+
+              {% comment %} <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
+                    <span class="num">3.</span>
+                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi?
+                  </button>
+                </h3>
+                <div id="faq-content-3" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                  </div>
+                </div>
+              </div><!-- # Faq item-->
+
+              <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-4">
+                    <span class="num">4.</span>
+                    Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?
+                  </button>
+                </h3>
+                <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                  </div>
+                </div>
+              </div><!-- # Faq item--> {% endcomment %}
+
+              {% comment %} <div class="accordion-item">
+                <h3 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-5">
+                    <span class="num">5.</span>
+                    Tempus quam pellentesque nec nam aliquam sem et tortor consequat?
+                  </button>
+                </h3>
+                <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
+                  <div class="accordion-body">
+                    Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                  </div>
+                </div>
+              </div><!-- # Faq item--> {% endcomment %}
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+
+
+    
+
+  </main><!-- End #main -->
+
+{% endblock %}
+
+
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}

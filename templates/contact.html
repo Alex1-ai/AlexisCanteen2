@@ -1,0 +1,103 @@
+{% load static %} {% include 'base.html' %}
+<!-- End Header -->
+<!-- End Header -->
+
+{% block body %}
+
+<!-- ======= Contact Section ======= -->
+<div class="container">
+  <br />
+  {% comment %}
+  <section class="">
+    {% endcomment %}
+    <h1 id="title" class="text-center" style="">Delivery Service</h1>
+    <p id="description" class="description text-center">
+      Thank you for using our services, we are ready to serve you more.
+    </p>
+    {% comment %}
+  </section>
+  {% endcomment %}
+
+  <form action="{% url 'contact' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+      <input
+        type="text"
+        name="name"
+        id="name"
+        class="form-control"
+        placeholder="Enter your name"
+        required
+      />
+    </div>
+    <br />
+
+    <div class="form-group">
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="form-control"
+        placeholder="Enter your Email"
+        required
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <input
+        type="text"
+        name="subject"
+        id="subject"
+        class="form-control"
+        placeholder="Subject"
+        required
+      />
+    </div>
+    <br />
+
+    <div class="form-group">
+      {% comment %}
+      <label id="usersPreference" for="usersPreference"
+        >Optional:Any additional Information(e.g what you want to be in your
+        dish)
+      </label>
+      {% endcomment %}
+
+      <textarea
+        name="message"
+        id="message"
+        class="form-control"
+        cols="20"
+        rows="5"
+        placeholder="Your message"
+      ></textarea>
+    </div>
+
+    <div class="form-group">
+      <div class="submit-button text-center">
+        <button
+          type="submit"
+          id="submit"
+          class=""
+          style="
+            border: none;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            color: white;
+            width: 90px;
+            background-color: #1acc8d;
+            border-radius: 0.6em;
+          "
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- End Contact Section -->
+
+{% endblock%} {% include 'footer.html' %}

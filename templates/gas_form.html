@@ -1,0 +1,167 @@
+{% load static %} {% include 'base.html' %}
+<!-- End Header -->
+<!-- End Header -->
+
+{% block body %}
+
+<div class="container">
+  <br>
+  {% comment %} <section class=""> {% endcomment %}
+    <h1 id="title" class="text-center" style="">        Methodist Delivery Service</h1>
+    <p
+      id="description"
+      class="description text-center"
+ 
+    >
+    Thank you for using our services, we are ready to serve you more.
+    </p>
+  {% comment %} </section> {% endcomment %}
+  
+
+
+<form action="{% url 'delivery_form' %}" method='POST'>
+  {% csrf_token %}
+  <div class="form-group">
+    {% comment %} <label id="name-label" for="name">Name</label> {% endcomment %}
+    <input
+      type="text"
+      name="name"
+      id="name"
+      class="form-control"
+      placeholder="Enter your name"
+      required
+    />
+  </div>
+  <br>
+
+  <div class="form-group">
+    {% comment %} <label id="email-label" for="email">Email</label> {% endcomment %}
+    <input
+      type="email"
+      name="email"
+      id="email"
+      class="form-control"
+      placeholder="Enter your Email"
+      required
+    />
+  </div>
+ <br>
+ <div class="form-group">
+  {% comment %} <label id="phoneNumber-Label" for="phoneNumber"
+    >Contact(phone-number)
+  </label> {% endcomment %}
+  <input
+    type="contact"
+    name="contact"
+    id="contact"
+    class="form-control"
+    placeholder="Enter your Phone-Number"
+    required
+  />
+</div>
+<br>
+
+  <div class="form-group">
+    {% comment %} <p>Food</p> {% endcomment %}
+    <select id="food" name="food" class="form-control" required>
+      <option disabled selected value>Select your meal</option>
+      {% for food in context.foods %}
+      {% if food.shop.name  == context.shop_name %}
+        <option value="{{food.meal}}">{{ food.meal }}</option>
+      {% endif %}
+      {% endfor %}
+      
+    </select>
+  </div>
+  <br>
+  <div class="form-group">
+  <input
+      type="text"
+      name="num_of_packs"
+      id="num_of_packs"
+      min="1"
+      max="50"
+      class="form-control"
+      placeholder="how many pack"
+    />
+  </div>
+   <br>
+
+  <!-- drop down for location -->
+  <div class="form-group">
+    {% comment %} <p>Location</p> {% endcomment %}
+    <select id="location" name="location" class="form-control" required>
+      <option disabled selected value>Select your Location</option>
+      <option value="Alpha-Royal">Alpha-Royal</option>
+      <option value="Center-Link">Center-Link</option>
+      <option value="Office">Office</option>
+      <option value="Class-room">Class-room</option>
+      <option value="Home">Home</option>
+
+    </select>
+  </div>
+  <br>
+
+  <div class="form-group">
+    {% comment %} <label id="hostelorOfficeNum" for="hostelorOfficeNum"
+      >Hostel/Office number</label
+    > {% endcomment %}
+    <input
+      type="text"
+      name="address"
+      class="form-control"
+      placeholder="Enter your hostel,Class-room, office or home address/number"
+      required
+    />
+  </div>
+  <br>
+  
+    {% comment %} <label id="number-label" for="number"
+      >Package<span class="clue">(how many pack)</span></label
+    > {% endcomment %}
+    
+  
+
+ 
+  <div class="form-group">
+    {% comment %} <label id="usersPreference" for="usersPreference"
+      >Optional:Any additional Information(e.g what you want to be in your
+      dish)
+  </label> {% endcomment %}
+    
+  <textarea name="user-preference" id="user-preference" class="form-control" cols="20" rows="5" placeholder="Optional:Any additional detailed Information.what you want to be in your dish e.g rice 10 cedes salad 3 cedes chicken 10"></textarea> 
+  
+  </div>
+ 
+    <div class="form-group">
+    
+      <div class="submit-button text-center">
+        <button
+          type="submit"
+          id="submit"
+          class=""
+          style="
+            border: none;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 8px;
+            color: white;
+            width: 90px;
+            background-color: #1acc8d;
+            border-radius: 0.6em;
+          "
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+  {% endblock %}
+
+
+
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
+</div>
