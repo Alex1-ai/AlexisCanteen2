@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from .models import User
 from . import models
 
-admin.site.site_header = 'ONLINE CANTEEN '
+admin.site.site_header = 'ALEXIS'
 admin.site.index_title = 'Admin'
 
 
