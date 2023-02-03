@@ -10,6 +10,8 @@ django = "==3.2.3"
 pillow = "*"
 whitenoise = "*"
 gunicorn = "*"
+django-sms = "*"
+twilio = "*"
 
 [dev-packages]
 

@@ -9,6 +9,9 @@ from .models import Services
 from .models import Food
 from .models import Order
 from home.models import SupportStaffDetails
+from canteen import settings
+# sending sms
+from twilio.rest import Client
 # Create your views here.
 
 
@@ -36,24 +39,51 @@ def deliveryForm(request):
             message = f"Name: {name} \n emial : {email} \n service_shop: {service_shop}\n package: {package} \n address:{address} \n num_of_pack: {num_of_packs} \n location: {location} \n contact: {contact} \n message: {user_preference}"
             order = Order.objects.create(
                 name=name, email=email,  package=package, service_shop=service_shop, location=location, num_of_packs=num_of_packs, address=address, contact=contact, user_preference=user_preference)
+            customerGmailMessage = f'Hi {name} , Your {package} order was successful. currently working on your order . Thanks for Using our services'
             try:
                 adminEmail = 'alexanderemmanuel1719@gmail.com'
                 subject = 'ALEXIS DELIVERY'
+
                 email_message = EmailMessage(
                     subject,
                     message,
                     settings.EMAIL_HOST_USER,
                     [adminEmail],
                 )
+                customerGmail = EmailMessage(
+                    subject,
+                    customerGmailMessage,
+                    settings.EMAIL_HOST_USER,
+                    [email]
+                )
+                is_customer_email_sent = customerGmail.send()
                 is_email_sent = email_message.send()
-                if is_email_sent:
+                account_sid = settings.ACCOUNT_SID
+                auth_token = settings.AUTH_TOKEN
+                client = Client(account_sid, auth_token)
+                customerMessage = client.messages.create(
+                    body=f'\nHi {name}\n Your {package} order was successful. currently working on your order.\nThanks for using ALEXIS SERVICES.',
+                    from_=settings.TRIAL_NUM,
+                    to=contact
+                )
+                staffMessage = client.messages.create(
+                    body=message,
+                    from_=settings.TRIAL_NUM,
+                    to=settings.MY_NUM
+                )
+
+                print(customerMessage.sid)
+                print(staffMessage.sid)
+
+                if is_email_sent and is_customer_email_sent and customerMessage:
                     order.save()
+
                     messages.info(
                         request, f'Hi {name} , Your {package} order was successful. currently working on your order . Thanks for Using our services')
 
             except:
                 messages.warning(
-                    request, "Please Try Again, Something Went Wrong. Hint: please kindly check your internet connection")
+                    request, "Please Try Again, Something Went Wrong. Hint: please kindly check the phone number(FORMAT:+233503843928) or make sure your Email is correct, if the problem still persist check your internet connection")
 
             finally:
                 return redirect('home')
