@@ -12,6 +12,7 @@ whitenoise = "*"
 gunicorn = "*"
 django-sms = "*"
 twilio = "*"
+django-jazzmin = "*"
 
 [dev-packages]
 

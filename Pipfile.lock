@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f408396d9a3a719b4b8aed9c728241ec0b3eb62e478a3c948d4d030161bd74ed"
+            "sha256": "c24faab22ac0471f7e657d41ab8fcb89984d66d0234b11686743b582ea7ec642"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -29,7 +29,7 @@
                 "sha256:35824b4c3a97115964b408844d64aa14db1cc518f6562e8d7261699d1350a9e3",
                 "sha256:4ad3232f5e926d6718ec31cfc1fcadfde020920e278684144551c91769c7bc18"
             ],
-            "markers": "python_version >= '3.6'",
+            "markers": "python_full_version >= '3.6.0'",
             "version": "==2022.12.7"
         },
         "charset-normalizer": {
@@ -147,6 +147,14 @@
             ],
             "index": "pypi",
             "version": "==0.3.0"
+        },
+        "django-jazzmin": {
+            "hashes": [
+                "sha256:5bb07055cf19183030724f976904fd8b6337559727959340a43832fab0531812",
+                "sha256:fb554c2d564649c65243b13385121fdbdda58521f49544f9d7cb9c414a4908d4"
+            ],
+            "index": "pypi",
+            "version": "==2.6.0"
         },
         "django-sms": {
             "hashes": [

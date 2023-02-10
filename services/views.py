@@ -16,6 +16,9 @@ from twilio.rest import Client
 
 
 def deliveryForm(request):
+    staffDetails = SupportStaffDetails.objects.all()[0]
+    staffDetails2 = SupportStaffDetails.objects.all()[1]
+    print(staffDetails2.contact)
 
     if request.method == 'POST':
         try:
@@ -32,8 +35,8 @@ def deliveryForm(request):
             messages.error(request, "please all fields are required")
             return redirect(deliveryForm)
 
-        print(service_shop, name, package, location, address,
-              num_of_packs, contact,  email, user_preference)
+        # print(service_shop, name, package, location, address,
+        #       num_of_packs, contact,  email, user_preference)
 
         if name and email and package and location and address and num_of_packs and contact:
             message = f"Name: {name} \n emial : {email} \n service_shop: {service_shop}\n package: {package} \n address:{address} \n num_of_pack: {num_of_packs} \n location: {location} \n contact: {contact} \n message: {user_preference}"
@@ -41,10 +44,18 @@ def deliveryForm(request):
                 name=name, email=email,  package=package, service_shop=service_shop, location=location, num_of_packs=num_of_packs, address=address, contact=contact, user_preference=user_preference)
             customerGmailMessage = f'Hi {name} , Your {package} order was successful. currently working on your order . Thanks for Using our services'
             try:
-                adminEmail = 'alexanderemmanuel1719@gmail.com'
+                # adminEmail = 'alexanderemmanuel1719@gmail.com'
+                adminEmail = staffDetails.email
+                deliveryStaff = staffDetails2.email
                 subject = 'ALEXIS DELIVERY'
 
                 email_message = EmailMessage(
+                    subject,
+                    message,
+                    settings.EMAIL_HOST_USER,
+                    [adminEmail],
+                )
+                deliveryStaff_message = EmailMessage(
                     subject,
                     message,
                     settings.EMAIL_HOST_USER,
@@ -56,26 +67,33 @@ def deliveryForm(request):
                     settings.EMAIL_HOST_USER,
                     [email]
                 )
+                is_delivery_email_sent = deliveryStaff_message.send()
                 is_customer_email_sent = customerGmail.send()
                 is_email_sent = email_message.send()
                 account_sid = settings.ACCOUNT_SID
                 auth_token = settings.AUTH_TOKEN
                 client = Client(account_sid, auth_token)
-                customerMessage = client.messages.create(
-                    body=f'\nHi {name}\n Your {package} order was successful. currently working on your order.\nThanks for using ALEXIS SERVICES.',
-                    from_=settings.TRIAL_NUM,
-                    to=contact
-                )
+                # customerMessage = client.messages.create(
+                #     body=f'\nHi {name}\n Your {package} order was successful. currently working on your order.\nThanks for using ALEXIS SERVICES.',
+                #     from_=settings.TRIAL_NUM,
+                #     to=staffDetails2.contact
+                # )
                 staffMessage = client.messages.create(
                     body=message,
                     from_=settings.TRIAL_NUM,
-                    to=settings.MY_NUM
+                    to=staffDetails.contact
                 )
 
-                print(customerMessage.sid)
+                deliveryMessage = client.messages.create(
+                    body=message,
+                    from_=settings.TRIAL_NUM,
+                    to=staffDetails2.contact
+                )
+                print(deliveryMessage)
+                # print(customerMessage.sid)
                 print(staffMessage.sid)
 
-                if is_email_sent and is_customer_email_sent and customerMessage:
+                if is_email_sent and is_customer_email_sent:
                     order.save()
 
                     messages.info(
@@ -123,7 +141,7 @@ def store(request, services_slug=None):
 
 
 def delivery(request, service, shop_name):
-    print(shop_name, service)
+    #print(shop_name, service)
 
     staffDetails = SupportStaffDetails.objects.all()[0]
     # if shop_name:
