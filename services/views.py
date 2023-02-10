@@ -59,7 +59,7 @@ def deliveryForm(request):
                     subject,
                     message,
                     settings.EMAIL_HOST_USER,
-                    [adminEmail],
+                    [deliveryStaff],
                 )
                 customerGmail = EmailMessage(
                     subject,
@@ -84,12 +84,12 @@ def deliveryForm(request):
                     to=staffDetails.contact
                 )
 
-                deliveryMessage = client.messages.create(
-                    body=message,
-                    from_=settings.TRIAL_NUM,
-                    to=staffDetails2.contact
-                )
-                print(deliveryMessage)
+                # deliveryMessage = client.messages.create(
+                #     body=message,
+                #     from_=settings.TRIAL_NUM,
+                #     to=staffDetails2.contact
+                # )
+                # print(deliveryMessage)
                 # print(customerMessage.sid)
                 print(staffMessage.sid)
 
