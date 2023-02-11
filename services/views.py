@@ -47,6 +47,7 @@ def deliveryForm(request):
                 # adminEmail = 'alexanderemmanuel1719@gmail.com'
                 adminEmail = staffDetails.email
                 deliveryStaff = staffDetails2.email
+                print(deliveryStaff)
                 subject = 'ALEXIS DELIVERY'
 
                 email_message = EmailMessage(
@@ -78,11 +79,11 @@ def deliveryForm(request):
                 #     from_=settings.TRIAL_NUM,
                 #     to=staffDetails2.contact
                 # )
-                staffMessage = client.messages.create(
-                    body=message,
-                    from_=settings.TRIAL_NUM,
-                    to=staffDetails.contact
-                )
+                # staffMessage = client.messages.create(
+                #     body=message,
+                #     from_=settings.TRIAL_NUM,
+                #     to=staffDetails.contact
+                # )
 
                 # deliveryMessage = client.messages.create(
                 #     body=message,
@@ -91,7 +92,7 @@ def deliveryForm(request):
                 # )
                 # print(deliveryMessage)
                 # print(customerMessage.sid)
-                print(staffMessage.sid)
+                # print(staffMessage.sid)
 
                 if is_email_sent and is_customer_email_sent:
                     order.save()
