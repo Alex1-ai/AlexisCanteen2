@@ -167,14 +167,14 @@ ACCOUNT_SID = 'ACc613f2908d0c38ec2c3afadb8480f9dd'
 AUTH_TOKEN = '6de3f569be3fb2eda05a063ed92740d2'
 TRIAL_NUM = '+14305410731'
 MY_NUM = '+233504967983'
-DELIVERYGUY = '+233504967983'
+# DELIVERYGUY = '+233246858146'
 
 # email stuff
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = 'lgbxkvhfxdrcseyu'
-DEFAULT_FROM_EMAIL = 'alexisdelivery@gmail.com'
-EMAIL_HOST_USER = 'tteachergradingsystem@gmail.com'
+EMAIL_HOST_PASSWORD = 'zkyozwgyobghjbdw'
+DEFAULT_FROM_EMAIL = 'alexisenterprise977@gmail.com'
+EMAIL_HOST_USER = 'alexisenterprise977@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_ACTIVE_FIELD = 'is_active'
 EMAIL_SERVER = 'smtp.gmail.com'

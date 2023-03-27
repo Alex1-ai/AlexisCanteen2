@@ -44,8 +44,8 @@ def deliveryForm(request):
                 name=name, email=email,  package=package, service_shop=service_shop, location=location, num_of_packs=num_of_packs, address=address, contact=contact, user_preference=user_preference)
             customerGmailMessage = f'Hi {name} , Your {package} order was successful. currently working on your order . Thanks for Using our services'
             try:
-                # adminEmail = 'alexanderemmanuel1719@gmail.com'
-                adminEmail = staffDetails.email
+                adminEmail = 'alexanderemmanuel1719@gmail.com'
+                # adminEmail = staffDetails.email
                 deliveryStaff = staffDetails2.email
                 print(deliveryStaff)
                 subject = 'ALEXIS DELIVERY'
@@ -68,12 +68,14 @@ def deliveryForm(request):
                     settings.EMAIL_HOST_USER,
                     [email]
                 )
-                is_delivery_email_sent = deliveryStaff_message.send()
-                is_customer_email_sent = customerGmail.send()
+                # is_delivery_email_sent = deliveryStaff_message.send()
+                # is_customer_email_sent = customerGmail.send()
+                print("Sending to adming")
                 is_email_sent = email_message.send()
-                account_sid = settings.ACCOUNT_SID
-                auth_token = settings.AUTH_TOKEN
-                client = Client(account_sid, auth_token)
+                print("finished sending to admion")
+                # account_sid = settings.ACCOUNT_SID
+                # auth_token = settings.AUTH_TOKEN
+                # client = Client(account_sid, auth_token)
                 # customerMessage = client.messages.create(
                 #     body=f'\nHi {name}\n Your {package} order was successful. currently working on your order.\nThanks for using ALEXIS SERVICES.',
                 #     from_=settings.TRIAL_NUM,
@@ -94,11 +96,13 @@ def deliveryForm(request):
                 # print(customerMessage.sid)
                 # print(staffMessage.sid)
 
-                if is_email_sent and is_customer_email_sent:
+                if is_email_sent:
                     order.save()
 
                     messages.info(
                         request, f'Hi {name} , Your {package} order was successful. currently working on your order . Thanks for Using our services')
+                else:
+                    print("NO it didnt work properly")
 
             except:
                 messages.warning(
