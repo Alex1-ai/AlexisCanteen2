@@ -100,7 +100,7 @@ def deliveryForm(request):
                     order.save()
 
                     messages.info(
-                        request, f'Hi {name} , Your {package} order was successful. currently working on your order . Thanks for Using our services')
+                        request, f'Hi {name} , Your {package} order was successful.please call (0246858146 or 0503168382) to hasten your order . Thanks for Using our services')
                 else:
                     print("NO it didnt work properly")
 
