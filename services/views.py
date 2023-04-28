@@ -68,7 +68,7 @@ def deliveryForm(request):
                     settings.EMAIL_HOST_USER,
                     [email]
                 )
-                # is_delivery_email_sent = deliveryStaff_message.send()
+                is_delivery_email_sent = deliveryStaff_message.send()
                 # is_customer_email_sent = customerGmail.send()
                 print("Sending to adming")
                 is_email_sent = email_message.send()
@@ -96,7 +96,7 @@ def deliveryForm(request):
                 # print(customerMessage.sid)
                 # print(staffMessage.sid)
 
-                if is_email_sent:
+                if is_email_sent and is_delivery_email_sent:
                     order.save()
 
                     messages.info(
