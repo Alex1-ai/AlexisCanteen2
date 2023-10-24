@@ -16,8 +16,12 @@ from twilio.rest import Client
 
 
 def deliveryForm(request):
-    staffDetails = SupportStaffDetails.objects.all()[0]
-    staffDetails2 = SupportStaffDetails.objects.all()[1]
+    # staffDetails = SupportStaffDetails.objects.all()[0]
+    staffsDetails = SupportStaffDetails.objects.all()
+    print(staffsDetails)
+    staffDetails1 = staffsDetails[0]
+    staffDetails2 = staffsDetails[1]
+    staffDetails3 = staffsDetails[2]
     print(staffDetails2.contact)
 
     if request.method == 'POST':
@@ -44,9 +48,10 @@ def deliveryForm(request):
                 name=name, email=email,  package=package, service_shop=service_shop, location=location, num_of_packs=num_of_packs, address=address, contact=contact, user_preference=user_preference)
             customerGmailMessage = f'Hi {name} , Your {package} order was successful. currently working on your order . Thanks for Using our services'
             try:
-                adminEmail = 'alexanderemmanuel1719@gmail.com'
-                # adminEmail = staffDetails.email
+                # adminEmail = 'alexanderemmanuel1719@gmail.com'
+                adminEmail = staffDetails1.email
                 deliveryStaff = staffDetails2.email
+                deliveryStaff2 = staffDetails3.email
                 print(deliveryStaff)
                 subject = 'ALEXIS DELIVERY'
 
@@ -62,17 +67,19 @@ def deliveryForm(request):
                     settings.EMAIL_HOST_USER,
                     [deliveryStaff],
                 )
-                customerGmail = EmailMessage(
+                deliveryStaff2_messasge = EmailMessage(
                     subject,
-                    customerGmailMessage,
+                    message,
                     settings.EMAIL_HOST_USER,
-                    [email]
+                    [deliveryStaff2]
                 )
-                is_delivery_email_sent = deliveryStaff_message.send()
+                is_delivery2_email_sent = deliveryStaff2_messasge.send()
+               
                 # is_customer_email_sent = customerGmail.send()
                 print("Sending to adming")
                 is_email_sent = email_message.send()
                 print("finished sending to admion")
+                is_delivery_email_sent = deliveryStaff_message.send()
                 # account_sid = settings.ACCOUNT_SID
                 # auth_token = settings.AUTH_TOKEN
                 # client = Client(account_sid, auth_token)
@@ -96,7 +103,7 @@ def deliveryForm(request):
                 # print(customerMessage.sid)
                 # print(staffMessage.sid)
 
-                if is_email_sent and is_delivery_email_sent:
+                if is_email_sent and is_delivery2_email_sent:
                     order.save()
 
                     messages.info(
@@ -147,8 +154,9 @@ def store(request, services_slug=None):
 
 def delivery(request, service, shop_name):
     #print(shop_name, service)
-
-    staffDetails = SupportStaffDetails.objects.all()[0]
+    staffData = SupportStaffDetails.objects.all()
+    staffDetails = staffData[0]
+    print(staffDetails.email)
     # if shop_name:
     #     category = service.lower().split('-')
     foods = Food.objects.all()
