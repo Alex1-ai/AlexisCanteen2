@@ -13,6 +13,7 @@ gunicorn = "*"
 django-sms = "*"
 twilio = "*"
 django-jazzmin = "*"
+python-dotenv = "==0.21.1"
 
 [dev-packages]
 

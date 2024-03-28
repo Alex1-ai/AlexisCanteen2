@@ -18,6 +18,9 @@ import cloudinary.api
 from django.contrib.messages import constants as messages
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+from dotenv import load_dotenv
+# import os
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -163,18 +166,18 @@ MESSAGE_TAGS = {
 }
 
 # sms stuff
-ACCOUNT_SID = 'ACc613f2908d0c38ec2c3afadb8480f9dd'
-AUTH_TOKEN = '6de3f569be3fb2eda05a063ed92740d2'
-TRIAL_NUM = '+14305410731'
-MY_NUM = '+233504967983'
+ACCOUNT_SID = os.environ.get("ACCOUNT_SID")
+AUTH_TOKEN = os.environ.get("AUTH_TOKEN")
+TRIAL_NUM = os.environ.get("TRIAL_NUM")
+MY_NUM = os.environ.get("MY_NUM")
 # DELIVERYGUY = '+233246858146'
 
 # email stuff
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = 'zkyozwgyobghjbdw'
-DEFAULT_FROM_EMAIL = 'alexisenterprise977@gmail.com'
-EMAIL_HOST_USER = 'alexisenterprise977@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+EMAIL_HOST_USER= os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_ACTIVE_FIELD = 'is_active'
 EMAIL_SERVER = 'smtp.gmail.com'
@@ -188,7 +191,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CLOUDINARY SETUP backup setup for cloudinary
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dpv9co6ym',
-    'API_KEY': '362223287944879',
-    'API_SECRET': 'FI20kbsJxfokucAz3uTwkIoyZTw'
+    'CLOUD_NAME':os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('API_KEY'),
+    'API_SECRET': os.environ.get('API_SECRET')
 }
