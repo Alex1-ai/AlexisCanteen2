@@ -1,0 +1,66 @@
+name: canteen_website
+
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches: [main]
+        types: [opened, synchronize]
+
+jobs:
+    canteen_pipeline:
+        runs-on: ubuntu-latest
+        env:
+          CLOUD_NAME: ${{ secrets.CLOUD_NAME}}
+          API_KEY: ${{ secrets.API_KEY }}
+          API_SECRET: ${{ secrets.API_SECRET }}
+
+
+        name: Checkout Repository
+
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+
+        - name: Set up Python
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.8
+
+        - name: Install dependencies
+          run: |
+              python -m pip install --upgrade pip
+              pip install -r requirements.txt
+
+        - name: Collecting Static files
+          run: |
+            python manage.py collectstatic --noinput
+
+        - name: Run tests
+          run: |
+              python manage.py test
+
+        - name: Deploy
+          if: ${{ github.event_name == 'push' && github.ref =='refs/heads/main' && !contains(toJson(github.event.commits.*.message),'#skip')   }}
+          env:
+            deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+          run: |
+            curl "$deploy_url"
+    tag_release:
+      if: ${{ github.event_name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
+      needs: [canteen_pipeline]
+      permissions:
+        contents: write
+      runs-on: ubuntu-20.04
+      steps:
+        - uses: actions/checkout@v3
+          with:
+            fetch-depth: '0'
+        - name: Bump version and push tag
+          uses: anothrNick/github-tag-action@1.64.0
+          env:
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+            WITH_V: true
+            DEFAULT_BUMP: patch
+
