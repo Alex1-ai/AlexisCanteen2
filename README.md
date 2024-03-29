@@ -16,6 +16,32 @@ The Alexis Canteen App transforms this challenge into an opportunity for improve
 
 To run the Alexis Canteen App on your local server, follow these steps:
 
+### Using Docker
+1. **Make sure your have Docker installed**
+
+2. **Clone the Repository**
+    ```
+    git clone https://github.com/Alex1-ai/AlexisCanteen2
+    ```
+3. **Move into the Directory**
+    ```
+    cd AlexisCanteen2
+    ```
+4. **Build the docker file**
+   ``
+    docker build .
+   ``
+
+5. **Run with Docker-compose**
+    ``
+    docker-compose up
+    ``
+
+
+
+
+
+### Running on your machine
 1. **Clone the Repository**
     ```
     git clone https://github.com/Alex1-ai/AlexisCanteen2
