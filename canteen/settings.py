@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY','secret')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*", "onrender.com", "127.0.0.1", "alexis.onrender.com"]
+ALLOWED_HOSTS = ["*",'localhost', '127.0.0.1', '[::1]','alexis.onrender.com']
 
 
 # Application definition
@@ -59,7 +59,6 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -166,10 +165,10 @@ MESSAGE_TAGS = {
 }
 
 # sms stuff
-ACCOUNT_SID = os.environ.get("ACCOUNT_SID")
-AUTH_TOKEN = os.environ.get("AUTH_TOKEN")
-TRIAL_NUM = os.environ.get("TRIAL_NUM")
-MY_NUM = os.environ.get("MY_NUM")
+# ACCOUNT_SID = os.environ.get("ACCOUNT_SID")
+# AUTH_TOKEN = os.environ.get("AUTH_TOKEN")
+# TRIAL_NUM = os.environ.get("TRIAL_NUM")
+# MY_NUM = os.environ.get("MY_NUM")
 # DELIVERYGUY = '+233246858146'
 
 # email stuff
