@@ -41,7 +41,7 @@
           <!--End Icon Box -->
           {% endfor %}
 
-          
+
 
         </div>
       </div>
@@ -55,16 +55,16 @@
         <!-- ======= Recent Blog Posts Section ======= -->
         <section id="services" class="recent-posts sections-bg">
           <div class="container" data-aos="fade-up">
-    
+
             <div class="section-header">
               <h2> Our Services </h2>
               {% if context.services %}
-              <p>Our passion is your happiness. We provide Maximum delivery services to our valued customers</p>
+              <p>Your happiness is Our Passion. We provide Maximum delivery services to our valued customers</p>
               {% else %}
               <p>Empty shops. Services at this location have not been registered with us!</p>
               {% endif %}
             </div>
-    
+
             <div class="row gy-4">
               {% if context.services %}
                     {% for service in context.services %}
@@ -72,14 +72,14 @@
                     {% if service.is_active %}
                         <div class="col-xl-4 col-md-6">
                           <article>
-              
+
                             <div class="post-img">
                               {% comment %} <img src="{% static 'assets/img/blog/blog-1.jpg' %}" alt="" class="img-fluid"> {% endcomment %}
                               <img src="{{service.service_image.url}}" alt="" class="img-fluid">
                             </div>
-              
+
                             <p class="post-category">{{service.title}}</p>
-              
+
                             <h2 class="title">
                               <a href="{{service.get_url}}">{{service.serviceName}}</a>
                             </h2>
@@ -87,24 +87,24 @@
                               <a href="{{service.get_url}}" class="text-white">Start Order</a>
 
                             </div>
-              
+
                             <div class="d-flex align-items-center">
                               {% comment %} <img src="{% static 'assets/img/blog/blog-author.jpg' %}" alt="" class="img-fluid post-author-img flex-shrink-0"> {% endcomment %}
                               <div class="post-meta">
                                 {% comment %} <p class="post-author">Maria Doe</p>
                                 <p class="post-date">
                                   <time datetime="2022-01-01">Jan 1, 2022</time>
-                                
+
                                 </p>  {% endcomment %}
                                 {% comment %} <div class = "btn btn-success">
                                   <a href="#" class="text-white">Get Started</a>
 
                                 </div> {% endcomment %}
 
-                                
-                              </div> 
+
+                              </div>
                             </div>
-              
+
                           </article>
                         </div><!-- End post list item -->
                     {%endif%}
@@ -114,12 +114,12 @@
               <div class="col-lg-12 order-1 order-lg-2">
                 <img src="{% static 'assets/img/empty_cart.png' %}" class="img-fluid rounded-5" alt="" data-aos="zoom-out" data-aos-delay="100">
                 </div>
-          
+
 
               {% endif %}
-          
+
             </div><!-- End recent posts list -->
-    
+
           </div>
         </section><!-- End Recent Blog Posts Section -->
 
@@ -214,7 +214,7 @@
                         <div>
                           <h3>{{ testimony.name }}</h3>
                           <h4>{{testimony.job_title}}</h4>
-                          
+
                           <div class="stars">
                             {% if testimony.rating == 5 %}
                             <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
@@ -242,8 +242,8 @@
                   </div>
                 </div><!-- End testimonial item -->
             {% endif %}
-            {% endfor %} 
-{% comment %} 
+            {% endfor %}
+{% comment %}
             <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
@@ -364,18 +364,18 @@
 
        {% endfor %} {% endcomment %}
           <div class="col-lg-8">
-           
+
 
 
             <div class="accordion accordion-flush" id="faqlist" data-aos="fade-up" data-aos-delay="100">
-           
+
              {% for faq in context.faqs %}
               <div class="accordion-item">
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-{{faq.number}}">
                     <span class="num">{{faq.number}}.</span>
-                    {{faq.question}}  
-                   
+                    {{faq.question}}
+
                   </button>
                 </h3>
                 <div id="faq-content-{{faq.number}}" class="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -385,7 +385,7 @@
                 </div>
               </div><!-- # Faq item-->
               {% endfor%}
-             
+
               {% comment %} <div class="accordion-item">
                 <h3 class="accordion-header">
                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
@@ -452,7 +452,7 @@
 
 
 
-    
+
 
   </main><!-- End #main -->
 

@@ -92,10 +92,7 @@
     {% comment %} <p>Location</p> {% endcomment %}
     <select id="location" name="location" class="form-control" required>
       <option disabled selected value>Select your Location</option>
-      <option value="Alpha-Royal">Alpha-Royal</option>
-      <option value="Center-Link">Center-Link</option>
       <option value="Office">Office</option>
-      <option value="Class-room">Class-room</option>
       <option value="Home">Home</option>
 
     </select>
@@ -104,13 +101,13 @@
 
   <div class="form-group">
     {% comment %} <label id="hostelorOfficeNum" for="hostelorOfficeNum"
-      >Hostel/Office number</label
+      > Adrress Home/Office</label
     > {% endcomment %}
     <input
       type="text"
       name="address"
       class="form-control"
-      placeholder="Enter your hostel,Class-room, office or home address/number"
+      placeholder="Enter full address to deliver the product"
       required
     />
   </div>
@@ -129,7 +126,7 @@
       dish)
   </label> {% endcomment %}
 
-  <textarea name="user-preference" id="user-preference" class="form-control" cols="20" rows="5" placeholder="Optional:Any additional detailed Information.what you want to be in your dish e.g rice 10 cedes salad 3 cedes chicken 10"></textarea>
+  <textarea name="user-preference" id="user-preference" class="form-control" cols="20" rows="5" placeholder="Optional:Any additional detailed Information.what other info would you like to add."></textarea>
 
   </div>
 
