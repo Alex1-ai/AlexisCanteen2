@@ -9,6 +9,7 @@ urlpatterns = [
          views.delivery, name="delivery"),
     path('contact/', views.contact, name='contact'),
     path('delivery_form/', views.deliveryForm, name='delivery_form'),
+    path('<str:ref>/', views.verify_payment, name="verify-payment")
     # path('')
     # path('reviewForm/', views.reviewForm, name='reviewForm'),
     # path("review/", views.review, name="review")

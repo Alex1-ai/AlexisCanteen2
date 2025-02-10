@@ -7,16 +7,16 @@
 <div class="container">
   <br>
   {% comment %} <section class=""> {% endcomment %}
-    <h1 id="title" class="text-center" style="">        Methodist Delivery Service</h1>
+    <h1 id="title" class="text-center" style="">        Gas Delivery Service</h1>
     <p
       id="description"
       class="description text-center"
- 
+
     >
     Thank you for using our services, we are ready to serve you more.
     </p>
   {% comment %} </section> {% endcomment %}
-  
+
 
 
 <form action="{% url 'delivery_form' %}" method='POST'>
@@ -70,7 +70,7 @@
         <option value="{{food.meal}}">{{ food.meal }}</option>
       {% endif %}
       {% endfor %}
-      
+
     </select>
   </div>
   <br>
@@ -115,26 +115,26 @@
     />
   </div>
   <br>
-  
+
     {% comment %} <label id="number-label" for="number"
       >Package<span class="clue">(how many pack)</span></label
     > {% endcomment %}
-    
-  
 
- 
+
+
+
   <div class="form-group">
     {% comment %} <label id="usersPreference" for="usersPreference"
       >Optional:Any additional Information(e.g what you want to be in your
       dish)
   </label> {% endcomment %}
-    
-  <textarea name="user-preference" id="user-preference" class="form-control" cols="20" rows="5" placeholder="Optional:Any additional detailed Information.what you want to be in your dish e.g rice 10 cedes salad 3 cedes chicken 10"></textarea> 
-  
+
+  <textarea name="user-preference" id="user-preference" class="form-control" cols="20" rows="5" placeholder="Optional:Any additional detailed Information.what you want to be in your dish e.g rice 10 cedes salad 3 cedes chicken 10"></textarea>
+
   </div>
- 
+
     <div class="form-group">
-    
+
       <div class="submit-button text-center">
         <button
           type="submit"

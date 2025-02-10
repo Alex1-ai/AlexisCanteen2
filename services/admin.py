@@ -32,6 +32,11 @@ class ContactAdmin(admin.ModelAdmin):
     list_display = ['name', 'email', 'subject',
                     'message', 'created_at', 'updated_at']
 
+@admin.register(models.Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ['amount', 'email', 'ref',
+                    'date_created', 'verified']
+
 
 @admin.register(models.Services)
 class ServicesAdmin(admin.ModelAdmin):

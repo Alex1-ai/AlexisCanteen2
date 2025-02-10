@@ -1,9 +1,10 @@
+from django.http import HttpRequest
 from django.shortcuts import get_object_or_404, render
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.conf import settings
-from .models import Contact
+from .models import Contact, Payment
 from .models import Shop
 from .models import Services
 from .models import Food
@@ -13,7 +14,25 @@ from canteen import settings
 # sending sms
 from twilio.rest import Client
 # Create your views here.
+import re
 
+def extract_number(text):
+    # Use regex to find the number inside the brackets
+    match = re.search(r'\(.*?(\d+).*?\)', text)
+    if match:
+        return match.group(1)
+    return None
+
+def verify_payment(request: HttpRequest, ref:str)-> HttpResponse:
+    print("entered here oooh")
+    payment = get_object_or_404(Payment, ref=ref)
+    verified = payment.verify_payment()
+    print("verifying")
+    if verified:
+        messages.success(request, "Verification Successful")
+    else:
+        messages.error(request, "Verification Failed")
+    return redirect('home')
 
 def deliveryForm(request):
     # staffDetails = SupportStaffDetails.objects.all()[0]
@@ -74,12 +93,12 @@ def deliveryForm(request):
                     [deliveryStaff2]
                 )
                 is_delivery2_email_sent = deliveryStaff2_messasge.send()
-               
+
                 # is_customer_email_sent = customerGmail.send()
                 print("Sending to adming")
                 is_email_sent = email_message.send()
                 print("finished sending to admion")
-                is_delivery_email_sent = deliveryStaff_message.send()
+                # is_delivery_email_sent = deliveryStaff_message.send()
                 # account_sid = settings.ACCOUNT_SID
                 # auth_token = settings.AUTH_TOKEN
                 # client = Client(account_sid, auth_token)
@@ -107,20 +126,32 @@ def deliveryForm(request):
                     order.save()
 
                     messages.info(
-                        request, f'Hi {name} , Your {package} order was successful.please call (0246858146 or 0503168382) to hasten your order . Thanks for Using our services')
+                        request, f'Hi {name} , Your {package} order was successful.please call (08067139902) to hasten your order . Thanks for Using our services')
+                    return redirect('home')
+
+                    # amount = extract_number(package)
+                    # payment = Payment.objects.create(amount = amount, email=email)
+                    # saved_payment =payment.save()
+                    # print(payment)
+                    # return render(request, "make_payment.html",{"payment": payment, "paystack_public_key":settings.PAYSTACK_PUBLIC_KEY})
+
                 else:
+                    messages.warning(
+                    request, "Please Try Again, Something Went Wrong. Hint: Payment error  or make sure your Email is correct, if the problem still persist check your internet connection")
                     print("NO it didnt work properly")
+                    return redirect('home')
 
             except:
                 messages.warning(
-                    request, "Please Try Again, Something Went Wrong. Hint: please kindly check the phone number(FORMAT:+233503843928) or make sure your Email is correct, if the problem still persist check your internet connection")
+                    request, "Please Try Again,1 Something Went Wrong. Hint: please kindly check the phone number(FORMAT:+233503843928) or make sure your Email is correct, if the problem still persist check your internet connection")
+                return render(request, 'university_form.html')
 
-            finally:
-                return redirect('home')
+            # finally:
+            #     return redirect('home')
 
         else:
             messages.warning(
-                request, "Please Try Again, Something Went Wrong. Hint: All fields are required")
+                request, "Please  2 Try Again, Something Went Wrong. Hint: All fields are required")
             return redirect('home')
         #message = request.POST['message']
 

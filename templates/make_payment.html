@@ -1,0 +1,62 @@
+{% load static %}
+{% include 'base.html' %}
+<!-- End Header -->
+  <!-- End Header -->
+
+
+
+  {% block body %}
+
+  <div class="d-flex row justify-content-center align-items-center py-md-5 py-3" style="min-height: 90vh;">
+    <div class="col-12">
+        <h5>Make Payment for: GH {{ payment.amount }}</h5>
+        <hr>
+
+            <script src="https://js.paystack.co/v1/inline.js"></script>
+            <button class="btn btn-large btn-success" onclick="payWithPayStack()" id="django-paystack-button">Make Payment</button>
+
+
+
+    </div>
+
+  </div>
+  <script>
+    function payWithPayStack(){
+        let currency = "GHS";
+        let plan = "";
+        let ref = "{{ payment.ref }}"
+        let obj = {
+            // key: " {{ paystack_public_key }}",
+            key: "pk_test_b2202bf692836fa93592a7111479d92173d21cc7",
+            email: "{{ payment.email }}",
+            amount: "{{ payment.amount_value }}",
+            ref: ref,
+            callback: function(response){
+                console.log("Verifying")
+                console.log(ref)
+                window.location.href = "{% url 'verify-payment'  payment.ref %}";
+            }
+        }
+        if(Boolean(currency)){
+            console.log("1")
+            obj.currency = currency.toUpperCase()
+        }
+        if (Boolean(plan)){
+            console.log("2")
+            obj.plan = plan;
+        }
+
+        var handler = PaystackPop.setup(obj);
+        handler.openIframe();
+
+    }
+  </script>
+
+
+
+
+  {% endblock %}
+
+
+  <!-- ======= Footer ======= -->
+  {% include 'footer.html' %}
